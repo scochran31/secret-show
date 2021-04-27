@@ -30,3 +30,41 @@ $('.modal-background').click(function() {
 $('.modal-close').click(function(){
     modal.classList.remove('is-active');
 });
+
+
+
+//------Storing the times each genre button was clicked
+
+var rockCount = 0; 
+var folkCount = 0;
+var indieCount = 0;
+var danceCount = 0;
+
+var rockEl = document.querySelector('#rock');
+var folkEl = document.querySelector('#folk');
+var indieEl = document.querySelector('#indie');
+var danceEl = document.querySelector('#dance');
+
+rockEl.addEventListener('click', function() {
+    rockCount++;
+    localStorage.setItem('rock', rockCount);
+    console.log('rock' + rockCount);
+  });
+
+folkEl.addEventListener('click', function() {
+    folkCount++;
+    localStorage.setItem('folk', folkCount);
+    console.log('folk' + folkCount);
+  });
+
+indieEl.addEventListener('click', function() {
+    indieCount++;
+    localStorage.setItem('indie', indieCount)
+    console.log('indie' + indieCount);
+  });
+
+danceEl.addEventListener('click', function() {
+    danceCount++;
+    localStorage.setItem('dance', danceCount)
+    console.log('dance' + danceCount);
+  });
