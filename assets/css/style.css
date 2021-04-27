@@ -4,6 +4,22 @@ header {
     margin: 0 auto;
 }
 
+footer {
+    background-image: linear-gradient(to right, #e42c76, #21409a, #e24c7c);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+}
+
+footer p {
+    color: ivory;
+}
+
+footer a {
+    color: ivory;
+}
+
 
 button {
     color: ivory;
@@ -29,3 +45,6 @@ button {
 .modalBtn {
     border: none;
 }
+
+#reflect {
+    -webkit-box-reflect: below 8px -webkit-gradient(linear, right top, right bottom, from(transparent), to(rgba(255, 255, 255, 0.4)));
