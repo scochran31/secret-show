@@ -15,8 +15,8 @@ button {
     padding: 0px 35px 0px 35px;
     border-radius: 10px;
     border:none; 
-    background-image: url("/assets/images/gradient-01.svg");
-    background-size: 400px;
+    background-image: linear-gradient(to right, #e42c7c, #21409a, #e42c7c );
+    background-size: cover;
     background-repeat: no-repeat;
 }
 
