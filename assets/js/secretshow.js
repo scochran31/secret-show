@@ -47,21 +47,24 @@ var danceEl = document.querySelector('#dance');
 
 rockEl.addEventListener('click', function() {
     rockCount++;
+    localStorage.setItem('rock', rockCount);
     console.log('rock' + rockCount);
   });
 
 folkEl.addEventListener('click', function() {
     folkCount++;
+    localStorage.setItem('folk', folkCount);
     console.log('folk' + folkCount);
   });
 
 indieEl.addEventListener('click', function() {
     indieCount++;
+    localStorage.setItem('indie', indieCount)
     console.log('indie' + indieCount);
   });
 
 danceEl.addEventListener('click', function() {
     danceCount++;
+    localStorage.setItem('dance', danceCount)
     console.log('dance' + danceCount);
   });
-
