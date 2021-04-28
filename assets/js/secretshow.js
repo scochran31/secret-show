@@ -68,3 +68,5 @@ danceEl.addEventListener('click', function() {
     localStorage.setItem('dance', danceCount)
     console.log('dance' + danceCount);
   });
+    console.log('dance' + danceCount);
+  });
