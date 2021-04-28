@@ -68,3 +68,12 @@ danceEl.addEventListener('click', function () {
     localStorage.setItem('dance', danceCount)
     console.log('dance' + danceCount);
 });
+
+// ---------- Emptying the DOM after the modal button click
+
+$('#modalBtn').click(function clearDOM (){
+    $('#load-page').empty();
+});
+
+
+    
