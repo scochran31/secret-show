@@ -73,10 +73,35 @@ danceEl.addEventListener('click', function () {
 
 $('#modalBtn').click(function clearDOM (){
     $('#load-page').empty();
-    $('#moda')
-});
+
+
+
+// on click close modal 
 
 
 
 
-    
+// --------------update teh Dom with Youtube after modal button 
+
+    fetch ( 'https://www.googleapis.com/youtube/v3/videos?id=7voMjZhK9BM&key=AIzaSyCD-KLjB1ggkVaDarraIp9NgwndXJqBRDo&fields=items(id,snippet(channelId,title,categoryId,description,thumbnails),statistics,contentDetails,player)&part=snippet,statistics,contentDetails,player')
+
+        .then (function (response) {
+        return response.json();
+        })
+        .then (function(data) {
+        console.log(data);
+        console.log(data.items[0].player.embedHtml);
+        var video = (data.items[0].player.embedHtml);
+        var container = document.getElementById('youtube');
+        container.innerHTML = video;
+        })
+
+        .catch (error=> {
+        console.log(error);
+        });
+
+        });
+
+
+
+
