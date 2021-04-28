@@ -73,7 +73,10 @@ danceEl.addEventListener('click', function () {
 
 $('#modalBtn').click(function clearDOM (){
     $('#load-page').empty();
+    $('#moda')
 });
+
+
 
 
     
