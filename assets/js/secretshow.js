@@ -31,8 +31,10 @@ $('.modal-close').click(function () {
     modal.classList.remove('is-active');
 });
 
-
-
+// 'Listen Now" on click close modal 
+$('#modal-btn').click(function() {
+    modal.classList.remove('is-active');
+});
 //------Storing the times each genre button was clicked
 
 var rockCount = 0;
@@ -71,12 +73,15 @@ danceEl.addEventListener('click', function () {
 
 // ---------- Emptying the DOM after the modal button click
 
-$('#modalBtn').click(function clearDOM (){
+$('#rock').click(function clearDOM (){
     $('#load-page').empty();
+    $('#modalBtn').click(function() {
+        modal.classList.remove('is-active')
+    });
+    
 
 
 
-// on click close modal 
 
 
 
