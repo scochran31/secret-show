@@ -41,6 +41,7 @@ var rockCount = 0;
 var folkCount = 0;
 var indieCount = 0;
 var danceCount = 0;
+var timesLiked = 0;
 
 var rockEl = document.querySelector('#rock');
 var folkEl = document.querySelector('#folk');
@@ -80,13 +81,22 @@ $('#rock').click(function clearDOM (){
     });
     
 
+//---------like button and counter  
+    $('#like-btn-container').removeAttr('style');    
+    $('#like-btn').click(function likeClick (){
+        $('#like-btn').attr('src','assets/images/like btn after.png');
+        timesLiked++;
+        localStorage.setItem('likes', timesLiked);
+        console.log('likes' + timesLiked);
+        var likeDisplay = localStorage.getItem('likes', timesLiked);
+        $('#like-counter').text('You have like this band ' + likeDisplay + ' times');
+    })
+// on click close modal 
 
 
 
 
-
-
-// --------------update teh Dom with Youtube after modal button 
+// --------------update the Dom with Youtube after modal button 
 
     fetch ( 'https://www.googleapis.com/youtube/v3/videos?id=7voMjZhK9BM&key=AIzaSyCD-KLjB1ggkVaDarraIp9NgwndXJqBRDo&fields=items(id,snippet(channelId,title,categoryId,description,thumbnails),statistics,contentDetails,player)&part=snippet,statistics,contentDetails,player')
 
@@ -108,5 +118,6 @@ $('#rock').click(function clearDOM (){
         });
 
 
+//--------------like button and local storage
 
-
+    
