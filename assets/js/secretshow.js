@@ -120,4 +120,8 @@ $('#rock').click(function clearDOM (){
 
 //--------------like button and local storage
 
+
+//--------------map
+
+
     
