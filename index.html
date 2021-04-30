@@ -48,7 +48,7 @@
    
     <div class='sidebar'>
         <div class='heading'>
-          <h1>Our locations</h1>
+          <h1>Music Venues</h1>
         </div>
         <div id='listings' class='listings'></div>
       </div>
@@ -96,7 +96,7 @@
               zoom: 11,
               scrollZoom: false
             });
-            var bars = {
+            var venues = {
   "type": "FeatureCollection",
   "features": [
     {
@@ -109,6 +109,8 @@
         ]
       },
       "properties": {
+        "id": "1",
+        "name": "Soundwell",
         "phoneFormatted": "(801) 290-1001",
         "phone": "8012901001",
         "address": "149 W 200 S",
@@ -128,6 +130,8 @@
         ]
       },
       "properties": {
+        "id": "2",
+        "name": "Metro Music Hall",
         "phoneFormatted": "(385) 528-0952",
         "phone": "3855280952",
         "address": "615 W 100 S",
@@ -147,6 +151,8 @@
         ]
       },
       "properties": {
+        "id": "3",
+        "name": "Urban Hall",
         "phoneFormatted": "(801) 746-0557",
         "phone": "8017460557",
         "address": "241 S 500 E",
@@ -158,6 +164,58 @@
     },
   ]
 };
+venues.features.forEach(function(venues, i){
+  venues.properties.id = i;
+});
+map.on('load', function (e) {
+  /* Add the data to your map as a layer */
+  map.addLayer({
+    "id": "locations",
+    "type": "circle",
+    /* Add a GeoJSON source containing place coordinates and information. */
+    "source": {
+      "type": "geojson",
+      "data": venues
+    }
+  });
+  buildLocationList(venues);
+});
+function buildLocationList(data) {
+  data.features.forEach(function(venues, i){
+    /**
+     * Create a shortcut for `store.properties`,
+     * which will be used several times below.
+    **/
+    var prop = venues.properties;
+
+    /* Add a new listing section to the sidebar. */
+    var listings = document.getElementById('listings');
+    var listing = listings.appendChild(document.createElement('div'));
+    /* Assign a unique `id` to the listing. */
+    listing.id = "listing-" + data.features[i].properties.id;
+    /* Assign the `item` class to each listing for styling. */
+    listing.className = 'item';
+
+    /* Add the link to the individual listing created above. */
+    var link = listing.appendChild(document.createElement('a'));
+    link.href = '#';
+    link.className = 'title';
+    link.id = "link-" + prop.id;
+    link.innerHTML = prop.name;
+
+    /* Add details to the individual listing. */
+    var details = listing.appendChild(document.createElement('div'));
+    details.innerHTML = prop.address;
+    if (prop.phone) {
+      details.innerHTML += ' · ' + prop.phoneFormatted;
+    }
+    if (prop.distance) {
+      var roundedDistance = Math.round(prop.distance * 100) / 100;
+      details.innerHTML +=
+        '<p><strong>' + roundedDistance + ' miles away</strong></p>';
+    }
+  });
+}
 
 </script>
       
