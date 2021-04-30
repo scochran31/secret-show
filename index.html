@@ -177,17 +177,49 @@ venues.features.forEach(function(venues, i){
 });
 map.on('load', function (e) {
   /* Add the data to your map as a layer */
-  map.addLayer({
-    "id": "locations",
-    "type": "circle",
-    /* Add a GeoJSON source containing place coordinates and information. */
-    "source": {
-      "type": "geojson",
-      "data": venues
-    }
-  });
-  buildLocationList(venues);
+  map.addSource('places', {
+  type: 'geojson',
+  data: venues
 });
+  buildLocationList(venues);
+  addMarkers();
+});
+
+function addMarkers() {
+  /* For each feature in the GeoJSON object above: */
+  venues.features.forEach(function(marker) {
+    /* Create a div element for the marker. */
+    var el = document.createElement('div');
+    /* Assign a unique `id` to the marker. */
+    el.id = "marker-" + marker.properties.id;
+    /* Assign the `marker` class to each marker for styling. */
+    el.className = 'marker';
+
+    new mapboxgl.Marker(el, { offset: [0, -23] })
+.setLngLat(marker.geometry.coordinates)
+.addTo(map);
+
+    el.addEventListener('click', function(e){
+  /* Fly to the point */
+  flyToVenues(marker);
+  /* Close all other popups and display popup for clicked store */
+  createPopUp(marker);
+  /* Highlight listing in sidebar */
+  var activeItem = document.getElementsByClassName('active');
+  e.stopPropagation();
+  if (activeItem[0]) {
+    activeItem[0].classList.remove('active');
+  }
+  var listing = document.getElementById('listing-' + marker.properties.id);
+  listing.classList.add('active');
+});
+    
+    /**
+     * Create a marker using the div element
+     * defined above and add it to the map.
+    **/
+  });
+}
 
 map.on('click', function(e) {
   /* Determine if a feature in the "locations" layer exists at that point. */

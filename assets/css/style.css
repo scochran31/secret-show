@@ -217,3 +217,16 @@ button {
   .mapboxgl-popup-anchor-top > .mapboxgl-popup-tip {
     border-bottom-color: #21409a;
   }
+
+  .marker {
+    border: none;
+    cursor: pointer;
+    height: 12px;
+    width: 12px;
+    background-image: url(file:///C:/Users/Amanda%20Hoshor/Downloads/guitar-solid.svg);
+    background-color: #e42c7c;
+  }
+
+  .mapboxgl-popup {
+    padding-bottom: 50px;
+  }

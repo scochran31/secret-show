@@ -134,7 +134,7 @@ function flyToVenues(currentFeature) {
     /** Check if there is already a popup on the map and if so, remove it */
     if (popUps[0]) popUps[0].remove();
   
-    var popup = new mapboxgl.Popup({ closeOnClick: false })
+    var popup = new mapboxgl.Popup({ closeOnClick: true })
       .setLngLat(currentFeature.geometry.coordinates)
       .setHTML('<h3>Music Venues</h3>' +
         '<h4>' + currentFeature.properties.address + '</h4>')
