@@ -87,6 +87,14 @@
         <button class="modal-close is-large" aria-label="close"></button>
 
 <script>
+    /* This will let you use the .remove() function later on */
+if (!('remove' in Element.prototype)) {
+  Element.prototype.remove = function() {
+    if (this.parentNode) {
+      this.parentNode.removeChild(this);
+    }
+  };
+}
             mapboxgl.accessToken = 'pk.eyJ1IjoibWFuZGFob3MiLCJhIjoiY2tuczd5bHduMHduOTJ3cW1xeW9wM2lwdiJ9.eLpeDugs3RSPY4WKvQyiGw';
           
             var map = new mapboxgl.Map({
@@ -180,6 +188,33 @@ map.on('load', function (e) {
   });
   buildLocationList(venues);
 });
+
+map.on('click', function(e) {
+  /* Determine if a feature in the "locations" layer exists at that point. */
+  var features = map.queryRenderedFeatures(e.point, {
+    layers: ['locations']
+  });
+  
+  /* If yes, then: */
+  if (features.length) {
+    var clickedPoint = features[0];
+    
+    /* Fly to the point */
+    flyToVenues(clickedPoint);
+    
+    /* Close all other popups and display popup for clicked store */
+    createPopUp(clickedPoint);
+    
+    /* Highlight listing in sidebar (and remove highlight for all other listings) */
+    var activeItem = document.getElementsByClassName('active');
+    if (activeItem[0]) {
+      activeItem[0].classList.remove('active');
+    }
+    var listing = document.getElementById('listing-' + clickedPoint.properties.id);
+    listing.classList.add('active');
+  }
+});
+
 function buildLocationList(data) {
   data.features.forEach(function(venues, i){
     /**
@@ -214,6 +249,20 @@ function buildLocationList(data) {
       details.innerHTML +=
         '<p><strong>' + roundedDistance + ' miles away</strong></p>';
     }
+    link.addEventListener('click', function(e){
+  for (var i = 0; i < data.features.length; i++) {
+    if (this.id === "link-" + data.features[i].properties.id) {
+      var clickedListing = data.features[i];
+      flyToVenues(clickedListing);
+      createPopUp(clickedListing);
+    }
+  }  
+  var activeItem = document.getElementsByClassName('active');
+  if (activeItem[0]) {
+    activeItem[0].classList.remove('active');
+  }
+  this.parentNode.classList.add('active');
+});
   });
 }
 
