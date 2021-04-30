@@ -3,6 +3,7 @@ var modalBg = document.querySelector('.modal-background');
 var modal = document.querySelector('.modal');
 var closeBtn = document.querySelector('.modal-close');
 
+
 $('#rock').click(function () {
     modal.classList.add('is-active');
     $('#modalGenre').text('Rock Artist Here');
@@ -74,7 +75,7 @@ danceEl.addEventListener('click', function () {
 
 // ---------- Emptying the DOM after the modal button click
 
-$('#rock').click(function clearDOM (){
+$('#modalBtn').click(function clearDOM (){
     $('#load-page').empty();
     $('#modalBtn').click(function() {
         modal.classList.remove('is-active')
