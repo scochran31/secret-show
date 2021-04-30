@@ -58,3 +58,8 @@ h3 {
     width: 30px;
 }
 
+.youtube {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
