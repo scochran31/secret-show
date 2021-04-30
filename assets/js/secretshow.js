@@ -92,7 +92,7 @@ $('#rock').click(function clearDOM (){
         $('#like-counter').text('You have like this band ' + likeDisplay + ' times');
     })
 // on click close modal 
-
+    
 
 
 
