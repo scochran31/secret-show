@@ -3,6 +3,7 @@ var modalBg = document.querySelector('.modal-background');
 var modal = document.querySelector('.modal');
 var closeBtn = document.querySelector('.modal-close');
 
+// updating modals on pop up with Band info
 
 $('#rock').click(function () {
     modal.classList.add('is-active');
@@ -23,6 +24,8 @@ $('#dance').click(function () {
     modal.classList.add('is-active');
     $('#modalGenre').text('Dance Artist Here');
 });
+
+// removing the modal after button click 
 
 $('.modal-background').click(function () {
     modal.classList.remove('is-active');
@@ -93,25 +96,14 @@ $('#rock').click(function clearDOM (){
             $('#like-rock-counter').text('You have like this band ' + likeDisplayRock + ' times');
         })
 // --------------update the Dom with Youtube after modal button 
-        fetch ( 'https://www.googleapis.com/youtube/v3/videos?id=7voMjZhK9BM&key=AIzaSyCD-KLjB1ggkVaDarraIp9NgwndXJqBRDo&fields=items(id,snippet(channelId,title,categoryId,description,thumbnails),statistics,contentDetails,player)&part=snippet,statistics,contentDetails,player')
-        
-        .then (function (response) {
-            return response.json();
-        })
-        .then (function(data) {
-                console.log(data);
-                console.log(data.items[0].player.embedHtml);
-                var video = (data.items[0].player.embedHtml);
-                var container = document.getElementById('youtube');
-                container.innerHTML = video;
-            })
-            
-                .catch (error=> {
-                    console.log(error);
-                });
+        pullYoutube('RsdUSY9r898');
+
                 
             });
+            
 });
+
+// mzRGq143Xws
 
 //---------------FOLK BUTTON
     $('#folk').click(function clearDOM (){
@@ -127,9 +119,15 @@ $('#rock').click(function clearDOM (){
                 console.log('likes' + timesLikedFolk);
                 var likeDisplayFolk = localStorage.getItem('likes', timesLikedFolk);
                 $('#like-folk-counter').text('You have like this band ' + likeDisplayFolk + ' times');
+
             })
+            // --------------update the Dom with Youtube after modal button 
+            pullYoutube('mzRGq143Xws');
         })
     });
+
+
+
 //----------------Indie Button
     $('#indie').click(function clearDOM (){
         $('#load-page').empty();
@@ -145,6 +143,8 @@ $('#rock').click(function clearDOM (){
                 var likeDisplayIndie = localStorage.getItem('likes', timesLikedIndie);
                 $('#like-indie-counter').text('You have like this band ' + likeDisplayIndie + ' times');
             })
+            // --------------update the Dom with Youtube after modal button 
+            pullYoutube('WYdXnmDlcd0');
         })
     });
 //-------------Dance Button
@@ -162,6 +162,30 @@ $('#dance').click(function clearDOM (){
             var likeDisplayDance = localStorage.getItem('likes', timesLikedDance);
             $('#like-dance-counter').text('You have like this band ' + likeDisplayDance + ' times');
         })
+        // --------------update the Dom with Youtube after modal button 
+        pullYoutube('7voMjZhK9BM');
     })
 });
 
+
+// function to pull up youtube based on video ID 
+
+function pullYoutube (videoID) {
+
+    fetch ( 'https://www.googleapis.com/youtube/v3/videos?id='+ videoID + '&key=AIzaSyCD-KLjB1ggkVaDarraIp9NgwndXJqBRDo&fields=items(id,snippet(channelId,title,categoryId,description,thumbnails),statistics,contentDetails,player)&part=snippet,statistics,contentDetails,player')
+        
+    .then (function (response) {
+        return response.json();
+    })
+    .then (function(data) {
+            console.log(data);
+            console.log(data.items[0].player.embedHtml);
+            var video = (data.items[0].player.embedHtml);
+            var container = document.getElementById('youtube');
+            container.innerHTML = video;
+        })
+        
+            .catch (error=> {
+                console.log(error);
+            });
+}
