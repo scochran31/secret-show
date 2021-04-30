@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css' rel='stylesheet' />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
     <title>Secret Show Project</title>
@@ -59,6 +61,22 @@
         <div id="like-dance-counter"></div>
         <a href="./index.html"><button>Return to Genre</button></a>
     </section>
+   
+    <div class='sidebar'>
+        <div class='heading'>
+          <h1>Music Venues</h1>
+        </div>
+        <div id='listings' class='listings'></div>
+      </div>
+      <div id="map" class="map"></div>
+    
+   
+     
+  <script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script>
+  <script src="./assets/js/secretshow.js"></script>
     
 
  <section>
@@ -84,11 +102,220 @@
           <button type="submit" id="modalBtn">Listen Now!</button>
         </div>
         <button class="modal-close is-large" aria-label="close"></button>
+
+<script>
+    /* This will let you use the .remove() function later on */
+if (!('remove' in Element.prototype)) {
+  Element.prototype.remove = function() {
+    if (this.parentNode) {
+      this.parentNode.removeChild(this);
+    }
+  };
+}
+            mapboxgl.accessToken = 'pk.eyJ1IjoibWFuZGFob3MiLCJhIjoiY2tuczd5bHduMHduOTJ3cW1xeW9wM2lwdiJ9.eLpeDugs3RSPY4WKvQyiGw';
+          
+            var map = new mapboxgl.Map({
+              container: 'map',
+              style: 'mapbox://styles/mapbox/light-v10',
+              center: [-111.8910,40.7608],
+              zoom: 11,
+              scrollZoom: false
+            });
+            var venues = {
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.8957,
+          40.7648
+        ]
+      },
+      "properties": {
+        "id": "1",
+        "name": "Soundwell",
+        "phoneFormatted": "(801) 290-1001",
+        "phone": "8012901001",
+        "address": "149 W 200 S",
+        "city": "Salt Lake City",
+        "country": "United States",
+        "postalCode": "84101",
+        "state": "Utah."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.9089,
+          40.7669
+        ]
+      },
+      "properties": {
+        "id": "2",
+        "name": "Metro Music Hall",
+        "phoneFormatted": "(385) 528-0952",
+        "phone": "3855280952",
+        "address": "615 W 100 S",
+        "city": "Salt Lake City",
+        "country": "United States",
+        "postalCode": "84101",
+        "state": "Utah"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.8764,
+         40.7638
+        ]
+      },
+      "properties": {
+        "id": "3",
+        "name": "Urban Hall",
+        "phoneFormatted": "(801) 746-0557",
+        "phone": "8017460557",
+        "address": "241 S 500 E",
+        "city": "Salt Lake City",
+        "country": "United States",
+        "postalCode": "84102",
+        "state": "Utah"
+      }
+    },
+  ]
+};
+venues.features.forEach(function(venues, i){
+  venues.properties.id = i;
+});
+map.on('load', function (e) {
+  /* Add the data to your map as a layer */
+  map.addSource('places', {
+  type: 'geojson',
+  data: venues
+});
+  buildLocationList(venues);
+  addMarkers();
+});
+
+function addMarkers() {
+  /* For each feature in the GeoJSON object above: */
+  venues.features.forEach(function(marker) {
+    /* Create a div element for the marker. */
+    var el = document.createElement('div');
+    /* Assign a unique `id` to the marker. */
+    el.id = "marker-" + marker.properties.id;
+    /* Assign the `marker` class to each marker for styling. */
+    el.className = 'marker';
+
+    new mapboxgl.Marker(el, { offset: [0, -23] })
+.setLngLat(marker.geometry.coordinates)
+.addTo(map);
+
+    el.addEventListener('click', function(e){
+  /* Fly to the point */
+  flyToVenues(marker);
+  /* Close all other popups and display popup for clicked store */
+  createPopUp(marker);
+  /* Highlight listing in sidebar */
+  var activeItem = document.getElementsByClassName('active');
+  e.stopPropagation();
+  if (activeItem[0]) {
+    activeItem[0].classList.remove('active');
+  }
+  var listing = document.getElementById('listing-' + marker.properties.id);
+  listing.classList.add('active');
+});
     
-      <script
-      src="https://code.jquery.com/jquery-3.6.0.min.js"
-      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-      crossorigin="anonymous"></script>
-      <script src="./assets/js/secretshow.js"></script>
+    /**
+     * Create a marker using the div element
+     * defined above and add it to the map.
+    **/
+  });
+}
+
+map.on('click', function(e) {
+  /* Determine if a feature in the "locations" layer exists at that point. */
+  var features = map.queryRenderedFeatures(e.point, {
+    layers: ['locations']
+  });
+  
+  /* If yes, then: */
+  if (features.length) {
+    var clickedPoint = features[0];
+    
+    /* Fly to the point */
+    flyToVenues(clickedPoint);
+    
+    /* Close all other popups and display popup for clicked store */
+    createPopUp(clickedPoint);
+    
+    /* Highlight listing in sidebar (and remove highlight for all other listings) */
+    var activeItem = document.getElementsByClassName('active');
+    if (activeItem[0]) {
+      activeItem[0].classList.remove('active');
+    }
+    var listing = document.getElementById('listing-' + clickedPoint.properties.id);
+    listing.classList.add('active');
+  }
+});
+
+function buildLocationList(data) {
+  data.features.forEach(function(venues, i){
+    /**
+     * Create a shortcut for `store.properties`,
+     * which will be used several times below.
+    **/
+    var prop = venues.properties;
+
+    /* Add a new listing section to the sidebar. */
+    var listings = document.getElementById('listings');
+    var listing = listings.appendChild(document.createElement('div'));
+    /* Assign a unique `id` to the listing. */
+    listing.id = "listing-" + data.features[i].properties.id;
+    /* Assign the `item` class to each listing for styling. */
+    listing.className = 'item';
+
+    /* Add the link to the individual listing created above. */
+    var link = listing.appendChild(document.createElement('a'));
+    link.href = '#';
+    link.className = 'title';
+    link.id = "link-" + prop.id;
+    link.innerHTML = prop.name;
+
+    /* Add details to the individual listing. */
+    var details = listing.appendChild(document.createElement('div'));
+    details.innerHTML = prop.address;
+    if (prop.phone) {
+      details.innerHTML += ' · ' + prop.phoneFormatted;
+    }
+    if (prop.distance) {
+      var roundedDistance = Math.round(prop.distance * 100) / 100;
+      details.innerHTML +=
+        '<p><strong>' + roundedDistance + ' miles away</strong></p>';
+    }
+    link.addEventListener('click', function(e){
+  for (var i = 0; i < data.features.length; i++) {
+    if (this.id === "link-" + data.features[i].properties.id) {
+      var clickedListing = data.features[i];
+      flyToVenues(clickedListing);
+      createPopUp(clickedListing);
+    }
+  }  
+  var activeItem = document.getElementsByClassName('active');
+  if (activeItem[0]) {
+    activeItem[0].classList.remove('active');
+  }
+  this.parentNode.classList.add('active');
+});
+  });
+}
+
+</script>
+      
 </body>
 </html>
