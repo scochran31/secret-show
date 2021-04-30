@@ -106,9 +106,6 @@ $('#rock').click(function clearDOM (){
                 
             });
             
-});
-
-// mzRGq143Xws
 
 //---------------FOLK BUTTON
     $('#folk').click(function clearDOM (){
