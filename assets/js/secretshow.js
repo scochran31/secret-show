@@ -8,21 +8,45 @@ var closeBtn = document.querySelector('.modal-close');
 $('#rock').click(function () {
     modal.classList.add('is-active');
     $('#modalGenre').text('Rock Artist Here');
+    var url = 'assets/images/spirit-machine-rock.JPG'
+    $('.modalcontent').ready(function() {
+        var image = new Image();
+        image.src = url;
+    $('#modal-img').append(image);
+    })
 });
 
 $('#folk').click(function () {
     modal.classList.add('is-active');
     $('#modalGenre').text('Folk Artist Here');
+    var url = 'assets/images/pixie%thepartygrassboys-folk.JPG'
+    $('.modalcontent').ready(function() {
+        var image = new Image();
+        image.src = url;
+    $('#modal-img').append(image);
+    })
 });
 
 $('#indie').click(function () {
     modal.classList.add('is-active');
     $('#modalGenre').text('Indie Artist Here');
+    var url = 'assets/images/first-daze-indie.JPG'
+    $('.modalcontent').ready(function() {
+        var image = new Image();
+        image.src = url;
+    $('#modal-img').append(image);
+    })
 });
 
 $('#dance').click(function () {
     modal.classList.add('is-active');
     $('#modalGenre').text('Dance Artist Here');
+    var url = 'assets/images/moodlite-electronic.JPG'
+    $('.modalcontent').ready(function() {
+        var image = new Image();
+        image.src = url;
+    $('#modal-img').append(image);
+    })
 });
 
 // removing the modal after button click 

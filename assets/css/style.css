@@ -24,6 +24,9 @@ footer a {
     color: ivory;
 }
 
+#load-page {
+    padding-top: 100px;
+}
 
 button {
     color: ivory;
@@ -51,6 +54,9 @@ h3 {
 }
 .modalBtn {
     border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .likeBtn {
