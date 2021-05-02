@@ -15,19 +15,19 @@
 
     <article id="load-page">
         <div class="buttons">
-            <button type="button" class="rock" id="rock">
+            <button type="button"id="rock">
                 ROCK
             </button>
     
-            <button type="button" class="folk" id="folk">
+            <button type="button"id="folk">
                 FOLK
             </button>
     
-            <button type="button" class="indie" id="indie">
+            <button type="button" id="indie">
                 INDIE
             </button>
     
-            <button type="button" class="dance" id="dance">
+            <button type="button" id="dance">
                 DANCE
             </button>
         </div>
@@ -40,22 +40,22 @@
 
     <!-- like buttons-->
     <section id="like-rock-container" style="display: none;">
-        <input id="like-rock" type="image" src="assets\images\like btn before.png" class="likeBtn"></>
+        <input id="like-rock" type="image" src="assets\images\like btn before.png" class="likeBtn">
         <div id="like-rock-counter"></div>
         <a href="./index.html"><button>Return to Genre</button></a>
     </section>
     <section id="like-folk-container" style="display: none;">
-        <input id="like-folk" type="image" src="assets\images\like btn before.png" class="likeBtn"></>
+        <input id="like-folk" type="image" src="assets\images\like btn before.png" class="likeBtn">
         <div id="like-folk-counter"></div>
         <a href="./index.html"><button>Return to Genre</button></a>
     </section>
     <section id="like-indie-container" style="display: none;">
-        <input id="like-indie" type="image" src="assets\images\like btn before.png" class="likeBtn"></>
+        <input id="like-indie" type="image" src="assets\images\like btn before.png" class="likeBtn">
         <div id="like-indie-counter"></div>
         <a href="./index.html"><button>Return to Genre</button></a>
     </section>
     <section id="like-dance-container" style="display: none;">
-        <input id="like-dance" type="image" src="assets\images\like btn before.png" class="likeBtn"></>
+        <input id="like-dance" type="image" src="assets\images\like btn before.png" class="likeBtn">
         <div id="like-dance-counter"></div>
         <a href="./index.html"><button>Return to Genre</button></a>
     </section>
@@ -81,7 +81,10 @@
         <div class="modal-background"></div>
         <div class="modal-content has-background-white py-5 px-5">
           <h3 class="title mb-6" id="modalGenre"></h3>
-          <button type="submit" id="modalBtn">Listen Now!</button>
+          <div id="modal-img"></div>
+          <div class="modalBtn" >
+              <button type="submit" id="modalBtn">Listen Now!</button>
+          </div>
         </div>
         <button class="modal-close is-large" aria-label="close"></button>
     
