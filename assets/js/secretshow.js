@@ -216,113 +216,240 @@ function pullYoutube (videoID) {
 }
 
 //globals
-var apiKey = "pk.eyJ1IjoibWFuZGFob3MiLCJhIjoiY2tuczd5bHduMHduOTJ3cW1xeW9wM2lwdiJ9.eLpeDugs3RSPY4WKvQyiGw";
-var mapCenter = [-111.8910,40.7608]
-
-mapboxgl.accessToken = apiKey;
+function pullMapbox () {
+    if (!('remove' in Element.prototype)) {
+        Element.prototype.remove = function() {
+          if (this.parentNode) {
+            this.parentNode.removeChild(this);
+          }
+        };
+      }
+                  mapboxgl.accessToken = 'pk.eyJ1IjoibWFuZGFob3MiLCJhIjoiY2tuczd5bHduMHduOTJ3cW1xeW9wM2lwdiJ9.eLpeDugs3RSPY4WKvQyiGw';
+                
+                  var map = new mapboxgl.Map({
+                    container: 'map',
+                    style: 'mapbox://styles/mapbox/light-v10',
+                    center: [-111.8910,40.7608],
+                    zoom: 11,
+                    scrollZoom: false
+                  });
+                  var venues = {
+        "type": "FeatureCollection",
+        "features": [
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -111.8957,
+                40.7648
+              ]
+            },
+            "properties": {
+              "id": "1",
+              "name": "Soundwell",
+              "phoneFormatted": "(801) 290-1001",
+              "phone": "8012901001",
+              "address": "149 W 200 S",
+              "city": "Salt Lake City",
+              "country": "United States",
+              "postalCode": "84101",
+              "state": "Utah."
+            }
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -111.9089,
+                40.7669
+              ]
+            },
+            "properties": {
+              "id": "2",
+              "name": "Metro Music Hall",
+              "phoneFormatted": "(385) 528-0952",
+              "phone": "3855280952",
+              "address": "615 W 100 S",
+              "city": "Salt Lake City",
+              "country": "United States",
+              "postalCode": "84101",
+              "state": "Utah"
+            }
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -111.8764,
+               40.7638
+              ]
+            },
+            "properties": {
+              "id": "3",
+              "name": "Urban Hall",
+              "phoneFormatted": "(801) 746-0557",
+              "phone": "8017460557",
+              "address": "241 S 500 E",
+              "city": "Salt Lake City",
+              "country": "United States",
+              "postalCode": "84102",
+              "state": "Utah"
+            }
+          },
+        ]
+      };
+      venues.features.forEach(function(venues, i){
+        venues.properties.id = i;
+      });
+      map.on('load', function (e) {
+        /* Add the data to your map as a layer */
+        map.addSource('places', {
+        type: 'geojson',
+        data: venues
+      });
+        buildLocationList(venues);
+        addMarkers();
+      });
+       
+      function addMarkers() {
+        /* For each feature in the GeoJSON object above: */
+        venues.features.forEach(function(marker) {
+          /* Create a div element for the marker. */
+          var el = document.createElement('div');
+          /* Assign a unique `id` to the marker. */
+          el.id = "marker-" + marker.properties.id;
+          /* Assign the `marker` class to each marker for styling. */
+          el.className = 'marker';
+       
+          new mapboxgl.Marker(el, { offset: [0, -23] })
+      .setLngLat(marker.geometry.coordinates)
+      .addTo(map);
+       
+          el.addEventListener('click', function(e){
+        /* Fly to the point */
+        flyToVenues(marker);
+        /* Close all other popups and display popup for clicked store */
+        createPopUp(marker);
+        /* Highlight listing in sidebar */
+        var activeItem = document.getElementsByClassName('active');
+        e.stopPropagation();
+        if (activeItem[0]) {
+          activeItem[0].classList.remove('active');
+        }
+        var listing = document.getElementById('listing-' + marker.properties.id);
+        listing.classList.add('active');
+      });
           
-            var map = new mapboxgl.Map({
-              container: 'map',
-              style: 'mapbox://styles/mapbox/light-v10',
-              center: [-111.8910,40.7608],
-              zoom: 11,
-              scrollZoom: false
-            });
-// Disable drag and zoom handlers.
-map.dragging.enable();
-map.touchZoom.enable();
-// map.doubleClickZoom.disable();
-map.scrollWheelZoom.disable();
-// map.keyboard.disable();
-
-// Add Feature Layer to map
-var markers = L.mapbox.featureLayer().addTo(map);
-
-// Initialize geoJson Data
-var geoJson = [{
-  type: 'Feature',
-  geometry: {
-    type: 'Point',
-    coordinates: [-111.8957, 40.7648
-]
-  },
-  properties: {
-    title: 'Soundwell',
-    address: '149 W 200 S, SLC, UT, 84101',
-    description: '(801) 290-1001',
-    'Tickets Available': true,
-    'No Tickets': false,
-    'marker-color': '#e42c7c'
-  }
-}, {
-  type: 'Feature',
-  geometry: {
-    type: 'Point',
-    coordinates: [-111.9089, 40.7669]
-  },
-  properties: {
-    title: 'Metro Music Hall',
-    address: '615 W 100 S, SLC, UT, 84101',
-    description: '(385) 528-0952',
-    'Tickets Available': true,
-    'No Tickets': false,
-    'marker-color': '#e42c7c'
-  }
-}, {
-  type: 'Feature',
-  geometry: {
-    type: 'Point',
-    coordinates: [-111.8764, 40.7638]
-  },
-  properties: {
-    title: 'Urban Hall',
-    address: '241 S 500 E, SLC, UT, 84102',
-    description: '(801) 746-0557',
-   'Tickets Available': true,
-    'No Tickets': false,
-    'marker-color': '#e42c7c'
-  }
-}];
-
-markers.setGeoJSON(geoJson);
-
-// Listener for marker click
-markers.on('click', function(e) {
-  // Force close the popup.
-  e.layer.closePopup();
-
-  var feature = e.layer.feature;
-  var title = feature.properties.title;
-  var content = feature.properties.description;
-  var latlng = feature.geometry.coordinates;
-
-  // Modal Content
-  $("#marker_title").text(title);
-  $("#marker_content").text(content);
-  $("#marker_latlng").text(formatLatLng(latlng));
-
-  $('#exampleModal').modal('show');
-});
-
-// Filter click event
-$('.menu-ui a').on('click', function() {
-  var filter = $(this).data('filter');
-  $(this).addClass('active').siblings().removeClass('active');
-  markers.setFilter(function(f) {
-    return (filter === 'all') ? true : f.properties[filter] === true;
-  });
-  return false;
-});
-
-// Clear Modal Data
-function empty() {
-  // TODO: Clear Modal when Modal is closed for next marker clicked
-}
-
-// Formats Latitude and Longitude for Modal
-function formatLatLng(latlng) {
-  // TODO: Format Latitude and Longitude
-  return latlng;
-}
+          /**
+           * Create a marker using the div element
+           * defined above and add it to the map.
+          **/
+        });
+      }
+       
+      map.on('click', function(e) {
+        /* Determine if a feature in the "locations" layer exists at that point. */
+        var features = map.queryRenderedFeatures(e.point, {
+          layers: ['locations']
+        });
+        
+        /* If yes, then: */
+        if (features.length) {
+          var clickedPoint = features[0];
+          
+          /* Fly to the point */
+          flyToVenues(clickedPoint);
+          
+          /* Close all other popups and display popup for clicked store */
+          createPopUp(clickedPoint);
+          
+          /* Highlight listing in sidebar (and remove highlight for all other listings) */
+          var activeItem = document.getElementsByClassName('active');
+          if (activeItem[0]) {
+            activeItem[0].classList.remove('active');
+          }
+          var listing = document.getElementById('listing-' + clickedPoint.properties.id);
+          listing.classList.add('active');
+        }
+      });
+       
+      function buildLocationList(data) {
+        data.features.forEach(function(venues, i){
+          /**
+           * Create a shortcut for `store.properties`,
+           * which will be used several times below.
+          **/
+          var prop = venues.properties;
+       
+          /* Add a new listing section to the sidebar. */
+          var listings = document.getElementById('listings');
+          var listing = listings.appendChild(document.createElement('div'));
+          /* Assign a unique `id` to the listing. */
+          listing.id = "listing-" + data.features[i].properties.id;
+          /* Assign the `item` class to each listing for styling. */
+          listing.className = 'item';
+       
+          /* Add the link to the individual listing created above. */
+          var link = listing.appendChild(document.createElement('a'));
+          link.href = '#';
+          link.className = 'title';
+          link.id = "link-" + prop.id;
+          link.innerHTML = prop.name;
+       
+          /* Add details to the individual listing. */
+          var details = listing.appendChild(document.createElement('div'));
+          details.innerHTML = prop.address;
+          if (prop.phone) {
+            details.innerHTML += ' · ' + prop.phoneFormatted;
+          }
+          if (prop.distance) {
+            var roundedDistance = Math.round(prop.distance * 100) / 100;
+            details.innerHTML +=
+              '<p><strong>' + roundedDistance + ' miles away</strong></p>';
+          }
+          link.addEventListener('click', function(e){
+        for (var i = 0; i < data.features.length; i++) {
+          if (this.id === "link-" + data.features[i].properties.id) {
+            var clickedListing = data.features[i];
+            flyToVenues(clickedListing);
+            createPopUp(clickedListing);
+          }
+        }  
+        var activeItem = document.getElementsByClassName('active');
+        if (activeItem[0]) {
+          activeItem[0].classList.remove('active');
+        }
+        this.parentNode.classList.add('active');
+      });
+        });
+      }
+    
+      function flyToStore(currentFeature) {
+        map.flyTo({
+        center: currentFeature.geometry.coordinates,
+        zoom: 15
+        });
+        }
+         
+        /**
+        * Create a Mapbox GL JS `Popup`.
+        **/
+        function createPopUp(currentFeature) {
+        var popUps = document.getElementsByClassName('mapboxgl-popup');
+        if (popUps[0]) popUps[0].remove();
+        var popup = new mapboxgl.Popup({ closeOnClick: false })
+        .setLngLat(currentFeature.geometry.coordinates)
+        .setHTML(
+        '<h3>Sweetgreen</h3>' +
+        '<h4>' +
+        currentFeature.properties.address +
+        '</h4>'
+        )
+        .addTo(map);
+        }
+    };
 
 
