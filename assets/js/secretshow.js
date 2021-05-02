@@ -214,3 +214,115 @@ function pullYoutube (videoID) {
                 console.log(error);
             });
 }
+
+//globals
+var apiKey = "pk.eyJ1IjoibWFuZGFob3MiLCJhIjoiY2tuczd5bHduMHduOTJ3cW1xeW9wM2lwdiJ9.eLpeDugs3RSPY4WKvQyiGw";
+var mapCenter = [-111.8910,40.7608]
+
+mapboxgl.accessToken = apiKey;
+          
+            var map = new mapboxgl.Map({
+              container: 'map',
+              style: 'mapbox://styles/mapbox/light-v10',
+              center: [-111.8910,40.7608],
+              zoom: 11,
+              scrollZoom: false
+            });
+// Disable drag and zoom handlers.
+map.dragging.enable();
+map.touchZoom.enable();
+// map.doubleClickZoom.disable();
+map.scrollWheelZoom.disable();
+// map.keyboard.disable();
+
+// Add Feature Layer to map
+var markers = L.mapbox.featureLayer().addTo(map);
+
+// Initialize geoJson Data
+var geoJson = [{
+  type: 'Feature',
+  geometry: {
+    type: 'Point',
+    coordinates: [-111.8957, 40.7648
+]
+  },
+  properties: {
+    title: 'Soundwell',
+    address: '149 W 200 S, SLC, UT, 84101',
+    description: '(801) 290-1001',
+    'Tickets Available': true,
+    'No Tickets': false,
+    'marker-color': '#e42c7c'
+  }
+}, {
+  type: 'Feature',
+  geometry: {
+    type: 'Point',
+    coordinates: [-111.9089, 40.7669]
+  },
+  properties: {
+    title: 'Metro Music Hall',
+    address: '615 W 100 S, SLC, UT, 84101',
+    description: '(385) 528-0952',
+    'Tickets Available': true,
+    'No Tickets': false,
+    'marker-color': '#e42c7c'
+  }
+}, {
+  type: 'Feature',
+  geometry: {
+    type: 'Point',
+    coordinates: [-111.8764, 40.7638]
+  },
+  properties: {
+    title: 'Urban Hall',
+    address: '241 S 500 E, SLC, UT, 84102',
+    description: '(801) 746-0557',
+   'Tickets Available': true,
+    'No Tickets': false,
+    'marker-color': '#e42c7c'
+  }
+}];
+
+markers.setGeoJSON(geoJson);
+
+// Listener for marker click
+markers.on('click', function(e) {
+  // Force close the popup.
+  e.layer.closePopup();
+
+  var feature = e.layer.feature;
+  var title = feature.properties.title;
+  var content = feature.properties.description;
+  var latlng = feature.geometry.coordinates;
+
+  // Modal Content
+  $("#marker_title").text(title);
+  $("#marker_content").text(content);
+  $("#marker_latlng").text(formatLatLng(latlng));
+
+  $('#exampleModal').modal('show');
+});
+
+// Filter click event
+$('.menu-ui a').on('click', function() {
+  var filter = $(this).data('filter');
+  $(this).addClass('active').siblings().removeClass('active');
+  markers.setFilter(function(f) {
+    return (filter === 'all') ? true : f.properties[filter] === true;
+  });
+  return false;
+});
+
+// Clear Modal Data
+function empty() {
+  // TODO: Clear Modal when Modal is closed for next marker clicked
+}
+
+// Formats Latitude and Longitude for Modal
+function formatLatLng(latlng) {
+  // TODO: Format Latitude and Longitude
+  return latlng;
+}
+
+
