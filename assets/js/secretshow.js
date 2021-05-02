@@ -231,7 +231,13 @@ function pullMapbox () {
                     style: 'mapbox://styles/mapbox/light-v10',
                     center: [-111.8910,40.7608],
                     zoom: 11,
-                    scrollZoom: false
+                    scrollZoom: false,
+                    dragging: enable,
+                    touchZoom: enable,
+// map.doubleClickZoom.disable();
+                    scrollWheelZoom: disable,
+// map.keyboard.disable();
+
                   });
                   var venues = {
         "type": "FeatureCollection",
@@ -443,7 +449,7 @@ function pullMapbox () {
         var popup = new mapboxgl.Popup({ closeOnClick: false })
         .setLngLat(currentFeature.geometry.coordinates)
         .setHTML(
-        '<h3>Sweetgreen</h3>' +
+        '<h3>Music Venues</h3>' +
         '<h4>' +
         currentFeature.properties.address +
         '</h4>'
