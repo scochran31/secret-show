@@ -25,7 +25,7 @@ $('#dance').click(function () {
     $('#modalGenre').text('Dance Artist Here');
 });
 
-// removing the modal after button click 
+// removing the modal after button
 
 $('.modal-background').click(function () {
     modal.classList.remove('is-active');
@@ -79,7 +79,7 @@ danceEl.addEventListener('click', function () {
     console.log('dance' + danceCount);
 });
 
-// ---------- Emptying the DOM after the modal button click
+
 //----------Rock Button
 $('#rock').click(function clearDOM (){
     $('#load-page').empty();
@@ -103,7 +103,6 @@ $('#rock').click(function clearDOM (){
             
 });
 
-// mzRGq143Xws
 
 //---------------FOLK BUTTON
     $('#folk').click(function clearDOM (){
@@ -147,6 +146,8 @@ $('#rock').click(function clearDOM (){
             pullYoutube('WYdXnmDlcd0');
         })
     });
+
+
 //-------------Dance Button
 $('#dance').click(function clearDOM (){
     $('#load-page').empty();
