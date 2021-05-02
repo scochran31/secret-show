@@ -103,7 +103,6 @@ $('#rock').click(function clearDOM (){
 // --------------update the Dom with Youtube after modal button 
         pullYoutube('RsdUSY9r898');
 
-                
             });
             
 
