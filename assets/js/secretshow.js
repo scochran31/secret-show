@@ -189,6 +189,7 @@ $('#dance').click(function clearDOM (){
         })
         // --------------update the Dom with Youtube after modal button 
         pullYoutube('7voMjZhK9BM');
+
     })
 });
 
@@ -442,7 +443,7 @@ if (!('remove' in Element.prototype)) {
     var popup = new mapboxgl.Popup({ closeOnClick: false })
     .setLngLat(currentFeature.geometry.coordinates)
     .setHTML(
-    '<h3>Sweetgreen</h3>' +
+    '<h3>Music Venues</h3>' +
     '<h4>' +
     currentFeature.properties.address +
     '</h4>'
