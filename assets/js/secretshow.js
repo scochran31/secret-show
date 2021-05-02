@@ -14,6 +14,7 @@ $('#rock').click(function () {
         image.src = url;
     $('#modal-img').append(image);
     })
+    
 });
 
 $('#folk').click(function () {
@@ -51,18 +52,19 @@ $('#dance').click(function () {
 
 // removing the modal after button click 
 
-$('.modal-background').click(function () {
-    modal.classList.remove('is-active');
-});
+        $('.modal-background').click(function () {
+            modal.classList.remove('is-active');
+        });
 
-$('.modal-close').click(function () {
-    modal.classList.remove('is-active');
-});
+        $('.modal-close').click(function () {
+            modal.classList.remove('is-active');
+        });
 
-// 'Listen Now" on click close modal 
-$('#modal-btn').click(function() {
-    modal.classList.remove('is-active');
-});
+        // 'Listen Now" on click close modal 
+        $('#modal-btn').click(function() {
+            modal.classList.remove('is-active');
+        });
+
 //------Storing the times each genre button was clicked
 var rockCount = 0;
 var folkCount = 0;
@@ -426,7 +428,7 @@ if (!('remove' in Element.prototype)) {
   });
     });
   }
-=======
+
 //globals
 function pullMapbox () {
     if (!('remove' in Element.prototype)) {
