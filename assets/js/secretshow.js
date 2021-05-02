@@ -6,6 +6,10 @@ var closeBtn = document.querySelector('.modal-close');
 // updating modals on pop up with Band info
 
 $('#rock').click(function () {
+   
+
+    console.log(modal);
+
     modal.classList.add('is-active');
     $('#modalGenre').text('Rock Artist Here');
     var url = 'assets/images/spirit-machine-rock.JPG'
@@ -14,7 +18,7 @@ $('#rock').click(function () {
         image.src = url;
     $('#modal-img').append(image);
     })
-    
+
 });
 
 $('#folk').click(function () {
