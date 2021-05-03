@@ -112,7 +112,7 @@ h3 {
   gets 2/3 of the page. You can adjust this to your personal liking. */
   .sidebar {
     position: absolute;
-    width: 25;
+    width: 25%;
     height: 50%;
     top: 25%;
     left: 0;
@@ -124,8 +124,9 @@ h3 {
     position: absolute;
     left: 25%;
     width: 33%;
-    top: 25%;
-    bottom: 25%;
+    top: 60%;
+    bottom: 0%;
+   
   }
 
   .heading {
