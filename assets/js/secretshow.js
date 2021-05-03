@@ -703,6 +703,3 @@ function createPopUp(currentFeature) {
         )
         .addTo(map);
     };
-
-
-
