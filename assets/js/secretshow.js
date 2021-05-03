@@ -45,7 +45,7 @@ $('#dance').click(function () {
     $('#modalGenre').text('Dance Artist Here');
     var url = 'assets/images/moodlite-electronic.JPG'
     $('.modalcontent').ready(function () {
-        var image = new Image();
+        var image = new Image();git merg
         image.src = url;
         $('#modal-img').append(image);
     })
