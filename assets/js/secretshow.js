@@ -45,7 +45,7 @@ $('#dance').click(function () {
     $('#modalGenre').text('Moodlite');
     var url = 'assets/images/moodlite-electronic.JPG'
     $('.modalcontent').ready(function () {
-        var image = new Image();git merg
+        var image = new Image();
         image.src = url;
         $('#modal-img').append(image);
     })
@@ -228,6 +228,8 @@ function pullYoutube(videoID) {
 
 //  function to insert map
 function pullMapbox() {
+
+    // insert mapbox into the dom on button click 
     $('#mapbox-container').append('<div id="sidebar"></div>', '<div class="map" id="map"></div>');
     $('#sidebar').append('<div class="heading"></div>', '<div id="listings" class="listings"></div>');
     $('.heading').append('<h1>Upcoming Shows</h1>');
