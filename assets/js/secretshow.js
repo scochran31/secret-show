@@ -8,7 +8,7 @@ var closeBtn = document.querySelector('.modal-close');
 $('#rock').click(function () {
     console.log(modal);
     modal.classList.add('is-active');
-    $('#modalGenre').text('Rock Artist Heregitgit ');
+    $('#modalGenre').text('Spirit Machines ');
     var url = 'assets/images/spirit-machine-rock.JPG'
     $('.modalcontent').ready(function () {
         var image = new Image();
@@ -20,8 +20,8 @@ $('#rock').click(function () {
 
 $('#folk').click(function () {
     modal.classList.add('is-active');
-    $('#modalGenre').text('Folk Artist Here');
-    var url = 'assets/images/pixie%thepartygrassboys-folk.JPG'
+    $('#modalGenre').text('Pixie and The Partygrass Boys');
+    var url = 'assets/images/pixieandthepartygrass.JPG'
     $('.modalcontent').ready(function () {
         var image = new Image();
         image.src = url;
@@ -31,7 +31,7 @@ $('#folk').click(function () {
 
 $('#indie').click(function () {
     modal.classList.add('is-active');
-    $('#modalGenre').text('Indie Artist Here');
+    $('#modalGenre').text('First Daze');
     var url = 'assets/images/first-daze-indie.JPG'
     $('.modalcontent').ready(function () {
         var image = new Image();
@@ -42,7 +42,7 @@ $('#indie').click(function () {
 
 $('#dance').click(function () {
     modal.classList.add('is-active');
-    $('#modalGenre').text('Dance Artist Here');
+    $('#modalGenre').text('Moodlite');
     var url = 'assets/images/moodlite-electronic.JPG'
     $('.modalcontent').ready(function () {
         var image = new Image();git merg
