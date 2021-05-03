@@ -80,8 +80,8 @@ h3 {
 }
 
 .likeBtn {
-    height: 30px;
-    width: 30px;
+    height: 50px;
+    width: 50px;
 }
 
 .youtube {
@@ -282,7 +282,7 @@ h3 {
     cursor: pointer;
     height: 12px;
     width: 12px;
-    background-image: url(file:///C:/Users/Amanda%20Hoshor/Downloads/guitar-solid.svg);
+    background-image: url(../images/guitar-solid.svg);
     background-color: #e42c7c;
   }
 
@@ -294,3 +294,10 @@ h3 {
     text-align: center;
     color: rgb(192, 190, 190);
   }
+  
+  .likeReturnBtns {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
