@@ -16,5 +16,4 @@ https://dante-poe.github.io/secret-show/
 ## Contribution
 Made with ❤️ by Ali, Sage, Shawn, & Amanda
 
-//live link
-https://dante-poe.github.io/secret-show/
+![Screen Shot 2021-05-02 at 8 59 47 PM](https://user-images.githubusercontent.com/79678327/116837903-8084fb00-ab89-11eb-9806-6e462a47eebc.png)
