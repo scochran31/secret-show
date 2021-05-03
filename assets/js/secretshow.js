@@ -156,6 +156,7 @@ $('#folk').click(function clearDOM() {
         })
         // --------------update the Dom with Youtube after modal button 
         pullYoutube('mzRGq143Xws');
+        pullMapbox();
     })
 });
 
@@ -178,6 +179,7 @@ $('#indie').click(function clearDOM() {
         })
         // --------------update the Dom with Youtube after modal button 
         pullYoutube('WYdXnmDlcd0');
+        pullMapbox();
     })
 });
 //-------------Dance Button
@@ -197,6 +199,7 @@ $('#dance').click(function clearDOM() {
         })
         // --------------update the Dom with Youtube after modal button 
         pullYoutube('7voMjZhK9BM');
+        pullMapbox();
     })
 });
 
@@ -440,9 +443,6 @@ function pullMapbox() {
 };
 //globals
 function pullMapbox() {
-    $('#mapbox-container').append('<div id="sidebar"></div>', '<div class="map" id="map"></div>');
-    $('#sidebar').append('<div class="heading"></div>', '<div id="listings" class="listings"></div>');
-    $('.heading').append('<h1>Upcoming Shows</h1>');
     if (!('remove' in Element.prototype)) {
         Element.prototype.remove = function () {
             if (this.parentNode) {
