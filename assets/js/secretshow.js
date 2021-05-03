@@ -117,11 +117,8 @@ $('#rock').click(function clearDOM() {
     $('#load-page').empty();
     $('#modalBtn').click(function () {
         modal.classList.remove('is-active')
-
-    });
-
-
-    
+   });
+  
     //--------like button after modal button click
     $('#like-rock-container').removeAttr('style');
     $('#like-rock').click(function likeClick() {
