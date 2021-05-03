@@ -134,9 +134,13 @@ h3 {
     /* left: 25%; */
     padding-left: 10px;
     width: 50%;
-    top: 60%;
-    bottom: 0%;
+    /* top: 60%; */
+    /* bottom: 0%; */
    
+  }
+
+  .mapboxgl-canvas {
+    height: 50%;
   }
 
   .heading {
