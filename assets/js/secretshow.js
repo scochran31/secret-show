@@ -6,10 +6,7 @@ var closeBtn = document.querySelector('.modal-close');
 // updating modals on pop up with Band info
 
 $('#rock').click(function () {
-
-
     console.log(modal);
-
     modal.classList.add('is-active');
     $('#modalGenre').text('Rock Artist Here');
     var url = 'assets/images/spirit-machine-rock.JPG'
@@ -56,13 +53,18 @@ $('#dance').click(function () {
 
 // removing the modal after button click 
 
-$('.modal-background').click(function () {
-    modal.classList.remove('is-active');
-});
+        $('.modal-background').click(function () {
+            modal.classList.remove('is-active');
+        });
 
-$('.modal-close').click(function () {
-    modal.classList.remove('is-active');
-});
+        $('.modal-close').click(function () {
+            modal.classList.remove('is-active');
+        });
+
+        // 'Listen Now" on click close modal 
+        $('#modal-btn').click(function() {
+            modal.classList.remove('is-active');
+        });
 
 // 'Listen Now" on click close modal 
 $('#modal-btn').click(function () {
