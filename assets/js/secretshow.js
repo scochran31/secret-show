@@ -22,6 +22,7 @@ $('#folk').click(function () {
     modal.classList.add('is-active');
     $('#modalGenre').text('Pixie and the Partygrass Boys');
     var url = 'assets/images/pixiethepartygrassboys-folk.JPG'
+
     $('.modalcontent').ready(function () {
         var image = new Image();
         image.src = url;
@@ -704,4 +705,6 @@ function createPopUp(currentFeature) {
             '</h4>'
         )
         .addTo(map);
+
     };
+
