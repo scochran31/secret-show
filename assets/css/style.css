@@ -1,6 +1,3 @@
-* {
-    box-sizing: border-box;
-}
 
 header {
     width: 75%;
@@ -12,9 +9,10 @@ header {
     -webkit-box-reflect: below 8px -webkit-gradient(linear, right top, right bottom, from(transparent), to(rgba(255, 255, 255, 0.4)));
 }
 
-/* body {
+body {
     background-image: url(../images/background2.jpg);
-} */
+    background-position-y: bottom;
+}
 
 footer {
     background-image: linear-gradient(to right, #e42c76, #21409a, #e24c7c);
@@ -33,8 +31,8 @@ footer a {
 }
 
 #load-page {
-    padding-top: 80px;
-    margin-bottom: 30px;
+    padding-top: 40px;
+    padding-bottom: 50px;
 }
 
 button {
