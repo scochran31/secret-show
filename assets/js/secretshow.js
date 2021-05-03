@@ -156,7 +156,6 @@ $('#folk').click(function clearDOM() {
         })
         // --------------update the Dom with Youtube after modal button 
         pullYoutube('mzRGq143Xws');
-        pullMapbox();
     })
 });
 
@@ -179,7 +178,6 @@ $('#indie').click(function clearDOM() {
         })
         // --------------update the Dom with Youtube after modal button 
         pullYoutube('WYdXnmDlcd0');
-        pullMapbox();
     })
 });
 //-------------Dance Button
@@ -199,7 +197,6 @@ $('#dance').click(function clearDOM() {
         })
         // --------------update the Dom with Youtube after modal button 
         pullYoutube('7voMjZhK9BM');
-        pullMapbox();
     })
 });
 
@@ -708,4 +705,3 @@ function createPopUp(currentFeature) {
         )
         .addTo(map);
     };
-
