@@ -8,7 +8,7 @@ var closeBtn = document.querySelector('.modal-close');
 $('#rock').click(function () {
     console.log(modal);
     modal.classList.add('is-active');
-    $('#modalGenre').text('Rock Artist Here');
+    $('#modalGenre').text('Spirit Machines ');
     var url = 'assets/images/spirit-machine-rock.JPG'
     $('.modalcontent').ready(function () {
         var image = new Image();
@@ -20,8 +20,8 @@ $('#rock').click(function () {
 
 $('#folk').click(function () {
     modal.classList.add('is-active');
-    $('#modalGenre').text('Folk Artist Here');
-    var url = 'assets/images/pixie%thepartygrassboys-folk.JPG'
+    $('#modalGenre').text('Pixie and The Partygrass Boys');
+    var url = 'assets/images/pixieandthepartygrass.JPG'
     $('.modalcontent').ready(function () {
         var image = new Image();
         image.src = url;
@@ -31,7 +31,7 @@ $('#folk').click(function () {
 
 $('#indie').click(function () {
     modal.classList.add('is-active');
-    $('#modalGenre').text('Indie Artist Here');
+    $('#modalGenre').text('First Daze');
     var url = 'assets/images/first-daze-indie.JPG'
     $('.modalcontent').ready(function () {
         var image = new Image();
@@ -42,7 +42,7 @@ $('#indie').click(function () {
 
 $('#dance').click(function () {
     modal.classList.add('is-active');
-    $('#modalGenre').text('Dance Artist Here');
+    $('#modalGenre').text('Moodlite');
     var url = 'assets/images/moodlite-electronic.JPG'
     $('.modalcontent').ready(function () {
         var image = new Image();
@@ -117,24 +117,20 @@ $('#rock').click(function clearDOM() {
     $('#load-page').empty();
     $('#modalBtn').click(function () {
         modal.classList.remove('is-active')
-
-    });
-
-
-
-    //--------like button after modal button click
-    $('#like-rock-container').removeAttr('style');
-    $('#like-rock').click(function likeClick() {
-        $('#like-rock').attr('src', 'assets/images/like btn after.png');
-        timesLikedRock++;
-        localStorage.setItem('likes', timesLikedRock);
-        console.log('likes' + timesLikedRock);
-        var likeDisplayRock = localStorage.getItem('likes', timesLikedRock);
-        $('#like-rock-counter').text('You have like this band ' + likeDisplayRock + ' times');
+        //--------like button after modal button click
+        $('#like-rock-container').removeAttr('style');
+        $('#like-rock').click(function likeClick() {
+            $('#like-rock').attr('src', 'assets/images/like btn after.png');
+            timesLikedRock++;
+            localStorage.setItem('likes', timesLikedRock);
+            console.log('likes' + timesLikedRock);
+            var likeDisplayRock = localStorage.getItem('likes', timesLikedRock);
+            $('#like-rock-counter').text('You have like this band ' + likeDisplayRock + ' times');
+        })
+        // --------------update the Dom with Youtube after modal button 
+        pullYoutube('RsdUSY9r898');
+        pullMapbox();
     })
-    // --------------update the Dom with Youtube after modal button 
-    pullYoutube('RsdUSY9r898');
-    pullMapbox();
 });
 
 
@@ -228,6 +224,8 @@ function pullYoutube(videoID) {
 
 //  function to insert map
 function pullMapbox() {
+
+    // insert mapbox into the dom on button click 
     $('#mapbox-container').append('<div id="sidebar"></div>', '<div class="map" id="map"></div>');
     $('#sidebar').append('<div class="heading"></div>', '<div id="listings" class="listings"></div>');
     $('.heading').append('<h1>Upcoming Shows</h1>');
