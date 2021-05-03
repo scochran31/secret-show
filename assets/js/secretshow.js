@@ -132,6 +132,7 @@ $('#rock').click(function clearDOM (){
         })
 // --------------update the Dom with Youtube after modal button 
         pullYoutube('RsdUSY9r898');
+        pullMapbox();
 
             });
             
@@ -223,6 +224,9 @@ function pullYoutube (videoID) {
 
 
 function pullMapbox () {
+
+
+    
 if (!('remove' in Element.prototype)) {
     Element.prototype.remove = function() {
       if (this.parentNode) {
@@ -432,6 +436,7 @@ if (!('remove' in Element.prototype)) {
   });
     });
   }
+};
 
 //globals
 function pullMapbox () {
@@ -701,4 +706,3 @@ function pullMapbox () {
     .addTo(map);
     }
 };
-
