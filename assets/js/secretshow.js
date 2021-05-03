@@ -8,7 +8,7 @@ var closeBtn = document.querySelector('.modal-close');
 $('#rock').click(function () {
     console.log(modal);
     modal.classList.add('is-active');
-    $('#modalGenre').text('Rock Artist Heregit');
+    $('#modalGenre').text('Rock Artist Heregitgit ');
     var url = 'assets/images/spirit-machine-rock.JPG'
     $('.modalcontent').ready(function () {
         var image = new Image();
