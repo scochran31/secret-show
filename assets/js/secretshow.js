@@ -305,7 +305,7 @@ function pullMapbox() {
                 },
                 "properties": {
                     "id": "3",
-                    "name": "Urban Hall",
+                    "name": "Urban Lounge",
                     "phoneFormatted": "(801) 746-0557",
                     "phone": "8017460557",
                     "address": "241 S 500 E",
