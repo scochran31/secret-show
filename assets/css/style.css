@@ -88,7 +88,9 @@ h3 {
     display: flex;
     align-items: center;
     justify-content: center;
+    padding-bottom: 30px;
 }
+
 * {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -127,7 +129,8 @@ h3 {
 
   #mapbox-container {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    /* justify-content: center; */
     margin: 0 auto;
    padding-top: 20px;
     width: 90%;
@@ -135,20 +138,23 @@ h3 {
   }
   .sidebar {
     /* position: absolute; */
-    /* width: 25%; */
-    height: 50%;
+    width: 25%;
+    display: flex;
+
+    /* height: 50%;
     top: 25%;
     left: 0;
-    overflow: hidden;
+    overflow: hidden; */ */
     /* border-right: 1px solid rgba(0, 0, 0, 0.25); */
   }
 
   .map {
     /* position: absolute; */
     /* left: 25%; */
-    padding-left: 10px;
-    width: 50%;
-    height: inherit;
+    /* padding-left: 10px; */
+    /* width: 75%; */
+    height: 400px;
+    width:350px;
     /* bottom: 0%; */
    
   }
@@ -162,7 +168,7 @@ h3 {
     background: #fff;
     border-bottom: 1px solid #eee;
     height: 80px;
-    line-height: 60px;
+    /* line-height: 60px; */
     padding: 0 10px;
     display: flex;
     align-content: center;
@@ -171,12 +177,13 @@ h3 {
   .heading h1 {
     display: flex;
     align-self: center;
+
   }
 
   .listings {
     height: 100%;
     overflow: auto;
-    padding-bottom: 60px;
+    padding-bottom: 20px;
   }
   
   .listings .item {
@@ -189,7 +196,7 @@ h3 {
   .listings .item:last-child { border-bottom: none; }
   
   .listings .item .title {
-    font-size: 25px;
+    font-size: 20px;
     color: #e42c7c;
     font-weight: 700;
   }
