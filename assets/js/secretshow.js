@@ -117,24 +117,24 @@ $('#rock').click(function clearDOM() {
     $('#load-page').empty();
     $('#modalBtn').click(function () {
         modal.classList.remove('is-active')
-   });
-  
-    //--------like button after modal button click
-    $('#like-rock-container').removeAttr('style');
-    $('#like-rock').click(function likeClick() {
-        $('#like-rock').attr('src', 'assets/images/like btn after.png');
-        timesLikedRock++;
-        localStorage.setItem('rock-likes', timesLikedRock);
-        console.log('likes' + timesLikedRock);
-        var likeDisplayRock = localStorage.getItem('rock-likes');
-        $('#like-rock-counter').text('You have liked this band ' + likeDisplayRock + ' times');
+        
+        //--------like button after modal button click
+        $('#like-rock-container').removeAttr('style');
+        $('#like-rock').click(function likeClick() {
+            $('#like-rock').attr('src', 'assets/images/like btn after.png');
+            timesLikedRock++;
+            localStorage.setItem('rock-likes', timesLikedRock);
+            console.log('likes' + timesLikedRock);
+            var likeDisplayRock = localStorage.getItem('rock-likes');
+            $('#like-rock-counter').text('You have liked this band ' + likeDisplayRock + ' times');
+            // --------------update the Dom with Youtube after modal button 
+        })
+        var likeDisplayRock = localStorage.getItem('rock-likes', timesLikedRock);
+        $('#like-rock-counter').text('You have liked this band ' + likeDisplayRock + ' times').attr('style', 'color: white');
+        
+        pullYoutube('RsdUSY9r898');
+        pullMapbox();
     })
-    // --------------update the Dom with Youtube after modal button 
-    var likeDisplayRock = localStorage.getItem('rock-likes', timesLikedRock);
-    $('#like-rock-counter').text('You have liked this band ' + likeDisplayRock + ' times').attr('style', 'color: white');
-    
-    pullYoutube('RsdUSY9r898');
-    pullMapbox();
 });
 
 

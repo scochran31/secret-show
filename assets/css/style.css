@@ -20,10 +20,11 @@ body {
   width: 75%;
   padding-top: 20px;
   margin: 0 auto;
+  font-size: 24px;
 }
 
 .description p {
-  text-align: justify;
+  text-align: center;
   color:white;
 }
 
@@ -144,7 +145,7 @@ h3 {
     /* height: 50%;
     top: 25%;
     left: 0;
-    overflow: hidden; */ */
+    overflow: hidden; */
     /* border-right: 1px solid rgba(0, 0, 0, 0.25); */
   }
 
